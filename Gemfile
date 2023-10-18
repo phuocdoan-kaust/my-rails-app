@@ -14,6 +14,11 @@ gem 'bootstrap', '~> 5.3.1'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "jquery-rails"
+gem 'devise'
+gem 'activeadmin'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
