@@ -3,6 +3,11 @@
 <%= render @product %>
 
 <div>
+<% if @product.active? %>
+    <%= link_to "Unactive this product", switch_state_product_path(@product) %>
+  <% else %>
+    <%= link_to "Active this product", switch_state_product_path(@product) %>
+  <% end %>
   <%= link_to "Edit this product", edit_product_path(@product) %> |
   <%= link_to "Back to products", products_path %>
 

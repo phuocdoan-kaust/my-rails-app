@@ -18,6 +18,8 @@ module RailsApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    # config.app_generators.scafford_controller = :scafford_controller
+    config.generators do |g|
+      g.scaffold_controller "scaffold_controller"
+    end
   end
 end

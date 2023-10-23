@@ -15,7 +15,7 @@ class ProductsTest < ApplicationSystemTestCase
     click_on "New product"
 
     check "Active" if @product.active
-    fill_in "Brand", with: @product.brand
+    fill_in "Brand", with: @product.brand_id
     fill_in "Currency", with: @product.currency
     fill_in "Name", with: @product.name
     fill_in "Price", with: @product.price
@@ -30,7 +30,7 @@ class ProductsTest < ApplicationSystemTestCase
     click_on "Edit this product", match: :first
 
     check "Active" if @product.active
-    fill_in "Brand", with: @product.brand
+    fill_in "Brand", with: @product.brand_id
     fill_in "Currency", with: @product.currency
     fill_in "Name", with: @product.name
     fill_in "Price", with: @product.price

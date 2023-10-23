@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  brand: one
-  price: 
   active: false
   currency: MyString
+  price: 1
+  brand: one
 
 two:
   name: MyString
-  brand: two
-  price: 
   active: false
   currency: MyString
+  price: 1
+  brand: two
