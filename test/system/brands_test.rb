@@ -16,7 +16,6 @@ class BrandsTest < ApplicationSystemTestCase
 
     check "Active" if @brand.active
     fill_in "Code", with: @brand.code
-    fill_in "Country", with: @brand.country
     fill_in "Name", with: @brand.name
     click_on "Create Brand"
 
@@ -30,7 +29,6 @@ class BrandsTest < ApplicationSystemTestCase
 
     check "Active" if @brand.active
     fill_in "Code", with: @brand.code
-    fill_in "Country", with: @brand.country
     fill_in "Name", with: @brand.name
     click_on "Update Brand"
 
