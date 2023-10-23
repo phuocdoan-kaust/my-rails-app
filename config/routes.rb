@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/:id', to: 'users#show', as: 'user'
   resources :products do
     member do
       get :switch_state
@@ -15,13 +16,5 @@ Rails.application.routes.draw do
     sign_out: 'signout',
     sign_up: 'signup'
   }
-  # as :user do
-  #   get 'signin', to: 'devise/session#new'
-  #   delete 'signout', to: 'devise/session#destroy'
-  #   get 'signup', to: 'devise/registration#new'
-  # end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root 'pages#home'
 end
