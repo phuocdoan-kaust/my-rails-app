@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :brands
   ActiveAdmin.routes(self)
   devise_for :users, path: '', path_names: {
     sign_in: 'signin',
@@ -11,9 +13,6 @@ Rails.application.routes.draw do
   #   get 'signup', to: 'devise/registration#new'
   # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get 'brand', to: 'pages#brand'
-  get 'product', to: 'pages#product'
-  # get 'brand' => 'pages#brand'
 
   # Defines the root path route ("/")
   root 'pages#home'
