@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+<p class="h1">Brands</p>
+<hr/>
+<div class="mb-3">
+  <%= link_to "CREATE", new_brand_path, class: "btn btn-success" %>
+</div>
+<div id="brands">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Name</th>
+        <th scope="col">Country</th>
+        <th scope="col">Code</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+      <% @brands.each do |brand| %>
+        <tr class="align-middle">
+          <td scope="row"><%= brand.name %></td>
+          <td scope="row"><%= brand.country %></td>
+          <td scope="row"><%= brand.code %></td>
+          <td scope="row">
+            <%= link_to "View Detail", brand, class: "btn btn-primary float-end" %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @brands.length == 0 %>
+        <p class="text-center text-muted fst-italic">No data found in the database. Click CREATE to create a new one.</p>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
