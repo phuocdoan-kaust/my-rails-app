@@ -1,17 +1,11 @@
-<div id="<%= dom_id brand %>">
-  <p>
-    <strong>Name:</strong>
-    <%= brand.name %>
-  </p>
-
-  <p>
-    <strong>Active:</strong>
-    <%= brand.active %>
-  </p>
-
-  <p>
-    <strong>Code:</strong>
-    <%= brand.code %>
-  </p>
-
+<div id="<%= dom_id brand %>" class="border border-1 shadow-sm p-4">
+  <h1 class="mb-5"><%= brand.name %></h1>
+  <div class="row mb-3">
+    <div class="col-sm-1">
+      <strong>Code:</strong>
+    </div>
+    <div class="col">
+      <%= brand.code %>
+    </div>
+  </div>
 </div>

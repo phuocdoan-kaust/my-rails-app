@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy switch_state ]
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    if current_user.admin?
+      all_products = Product
+    else
+      all_products = current_user.products
+    end
+    @products = all_products.where(active: true)
   end
 
   # GET /products/1 or /products/1.json
@@ -12,7 +18,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = current_user.products.new
   end
 
   # GET /products/1/edit
@@ -21,7 +27,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.new(product_params)
 
     respond_to do |format|
       if @product.save
@@ -61,6 +67,15 @@ class ProductsController < ApplicationController
   def switch_state
     @product.update(active: !@product.active)
     redirect_to product_url(@product), notice: "Product was successfully switched to #{@product.active}"
+  end
+
+  def inactive
+    if current_user.admin?
+      all_products = Product
+    else
+      all_products = current_user.products
+    end
+    @products = all_products.where(active: false)
   end
 
   private

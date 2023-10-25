@@ -1,15 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @product %>
-
-<div>
-<% if @product.active? %>
-    <%= link_to "Unactive this product", switch_state_product_path(@product) %>
-  <% else %>
-    <%= link_to "Active this product", switch_state_product_path(@product) %>
-  <% end %>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
+<div class="d-flex flex-row">
+  <div>
+    <%= link_to "EDIT", edit_product_path(@product), class: "btn btn-primary" %>
+    <%= link_to "BACK", products_path, class: "btn btn-secondary" %>
+    <% if @product.active? %>
+      <%= link_to "ARCHIVE", switch_state_product_path(@product), class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "UNARCHIVE", switch_state_product_path(@product), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+  <%= button_to "DELETE", @product, method: :delete, class: "d-inline-block btn btn-danger ms-1" %>
+</div>
+<div class="mt-3">
+  <%= render @product %>
 </div>

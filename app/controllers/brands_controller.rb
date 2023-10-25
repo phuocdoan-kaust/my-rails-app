@@ -3,7 +3,7 @@ class BrandsController < ApplicationController
 
   # GET /brands or /brands.json
   def index
-    @brands = Brand.all
+    @brands = Brand.where(active: true)
   end
 
   # GET /brands/1 or /brands/1.json
@@ -61,6 +61,10 @@ class BrandsController < ApplicationController
   def switch_state
     @brand.update(active: !@brand.active)
     redirect_to brand_url(@brand), notice: "Brand was successfully switched to #{@brand.active}"
+  end
+
+  def inactive
+    @brands = Brand.where(active: false)
   end
 
   private

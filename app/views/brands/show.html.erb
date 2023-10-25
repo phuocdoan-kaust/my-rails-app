@@ -1,15 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @brand %>
-
-<div>
-  <% if @brand.active? %>
-    <%= link_to "Unactive this brand", switch_state_brand_path(@brand) %>
-  <% else %>
-    <%= link_to "Active this brand", switch_state_brand_path(@brand) %>
-  <% end %>
-  <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-  <%= link_to "Back to brands", brands_path %>
-
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
+<div class="d-flex flex-row">
+  <div>
+    <%= link_to "EDIT", edit_brand_path(@brand), class: "btn btn-primary" %>
+    <%= link_to "BACK", brands_path, class: "btn btn-secondary" %>
+    <% if @brand.active? %>
+      <%= link_to "ARCHIVE", switch_state_brand_path(@brand), class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "UNARCHIVE", switch_state_brand_path(@brand), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+  <%= button_to "DELETE", @brand, method: :delete, class: "d-inline-block btn btn-danger ms-1" %>
+</div>
+<div class="mt-3">
+  <%= render @brand %>
 </div>

@@ -13,7 +13,7 @@
 
   <body>
     <%# Navigation Bar %>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
       <div class="container">
         <%= link_to "Wogi Assignment", root_path, class:"navbar-brand" %>
         <div class="collapse navbar-collapse" id="navbarContent">
@@ -22,40 +22,39 @@
               <%= link_to "Home", root_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Brand", brands_path, class:"nav-link" %>
+              <%= link_to "Brands", brands_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Product", products_path, class:"nav-link" %>
+              <%= link_to "Products", products_path, class:"nav-link" %>
             </li>
+            <% if current_user && current_user.admin? %>
+              <li class="nav-item">
+                <%= link_to "Go to Admin Area", admin_root_path, class:"nav-link", target: :_blank %>
+              </li>
+            <% end %>
           </ul>    
           <% if user_signed_in? %>
-            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class:"btn btn-secondary" %>
             <div class="ms-2 dropdown">
-              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
+              <button class="btn dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
                 <%= icon('fa-solid fa-gear','') %>
                 <%= current_user.name %>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
               </ul>
             </div>
           <% else %>
             <%= link_to "Sign In", new_user_session_path, class:"btn btn-secondary" %>
-            <%= link_to "Sign Up", new_user_registration_path, class:"btn" %>
+            <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-dark" %>
           <% end %>
         </div>
       </div>
     </nav>
-
-    <%# Flash Messages %>
-    <div class="container mt-3">
-      <% flash.each do |name, message|%>
-        <%= content_tag(:div, message, class: "alert alert-info #{name}")%>
-      <% end %>
-    </div>
     
     <%# Page Content %>
-    <div class="container">
+    <div class="container mt-5">
       <%= yield %>
     </div>
   </body>

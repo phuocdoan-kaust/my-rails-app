@@ -2,16 +2,13 @@
 <hr class="mt-0"/>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
   <div class="row mb-3">
     <%= f.label :email, class: "col-sm-2 col-form-label" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-10" %>
   </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
   <div class="row mb-3">
     <%= f.label :password, class: "col-sm-2 col-form-label" %>
     <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-10", placeholder: "Leave blank if you don't want to change it" %>
@@ -19,24 +16,27 @@
       <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
   </div>
-
   <div class="row mb-3">
     <%= f.label :password_confirmation, class: "col-sm-2 col-form-label" %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-10" %>
   </div>
-
-  <div class="row mb-3">
+  <div class="row mb-5">
     <%= f.label :current_password, class: "col-sm-2 col-form-label" %>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "col-sm-10", placeholder: "We need your current password to confirm your changes" %>
   </div>
-
+  <strong class="text-muted">General Information</strong>
+  <hr class="mt-0"/>
+  <div class="row mb-3">
+    <%= f.label :name, "Username", class: "col-sm-2 col-form-label" %>
+    <%= f.email_field :name, autofocus: true, autocomplete: "email", class: "col-sm-10" %>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :payout_rate, class: "col-sm-2 col-form-label" %>
+    <%= f.email_field :payout_rate, autofocus: true, autocomplete: "email", class: "col-sm-10" %>
+  </div>
   <div class="text-end me-0">
-    <%= f.submit "Update", class: "btn btn-primary"%>
+    <%= f.submit "Update", class: "btn btn-primary" %>
     <%= link_to "Cancel", :back, class: "ms-1 btn btn-secondary" %>
     <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "ms-1 btn btn-danger" %></div>
   </div>
 <% end %>
-<div class="container mt-4">
-  <strong class="text-muted">General Information</strong>
-  <hr class="mt-0"/>
-</div>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user'
+  get 'brands/inactive', to: 'brands#inactive', as: 'inactive_brands'
+  get 'products/inactive', to: 'products#inactive', as: 'inactive_products'
   resources :products do
+    get :inactive
     member do
       get :switch_state
     end

@@ -1,41 +1,37 @@
-<h1>Products</h1>
+<p class="h1">Brands</p>
 <hr/>
 <div class="mb-3">
-  <%= link_to "CREATE", new_product_path, class: "btn btn-success" %>
+  <%= link_to "CREATE", new_brand_path, class: "btn btn-success" %>
   <div class="ms-2 dropdown d-inline">
     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
       <%= icon('fa-solid fa-gear','') %>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><%= link_to "View Archived", inactive_products_path, class: "dropdown-item" %></li>
+      <li><%= link_to "View Active", brands_path, class: "dropdown-item" %></li>
     </ul>
   </div>
 </div>
-<div id="products">
+<div id="brands">
   <table class="table">
     <thead>
       <tr class="table-secondary">
         <th scope="col">Name</th>
-        <th scope="col">Brand</th>
-        <th scope="col">Price</th>
-        <th scope="col">Currency</th>
+        <th scope="col">Code</th>
         <th scope="col"></th>
     </thead>
     <tbody>
-      <% @products.each do |product| %>
+      <% @brands.each do |brand| %>
         <tr class="align-middle">
-          <td scope="row"><%= product.name %></td>
-          <td scope="row"><%= product.brand.name %></td>
-          <td scope="row"><%= product.price %></td>
-          <td scope="row"><%= product.currency %></td>
+          <td scope="row"><%= brand.name %></td>
+          <td scope="row"><%= brand.code %></td>
           <td scope="row">
-            <%= link_to "View Detail", product, class: "btn btn-primary float-end" %>
+            <%= link_to "View Detail", brand, class: "btn btn-primary float-end" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <% if @products.length == 0 %>
+  <% if @brands.length == 0 %>
     <p class="text-center text-muted fst-italic">No data found in the database. Click CREATE to create a new one.</p>
   <% end %>
 </div>

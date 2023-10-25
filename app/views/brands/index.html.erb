@@ -1,8 +1,15 @@
-<p style="color: green"><%= notice %></p>
 <p class="h1">Brands</p>
 <hr/>
 <div class="mb-3">
   <%= link_to "CREATE", new_brand_path, class: "btn btn-success" %>
+  <div class="ms-2 dropdown d-inline">
+    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
+      <%= icon('fa-solid fa-gear','') %>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><%= link_to "View Archived", inactive_brands_path, class: "dropdown-item" %></li>
+    </ul>
+  </div>
 </div>
 <div id="brands">
   <table class="table">
