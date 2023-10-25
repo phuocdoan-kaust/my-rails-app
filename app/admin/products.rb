@@ -1,5 +1,6 @@
 ActiveAdmin.register Product do
   permit_params :email, :admin, :name, :payout_rate
+  # remove_filter :product_assignments
 
   form do |f|
     f.semantic_errors
@@ -9,7 +10,6 @@ ActiveAdmin.register Product do
       f.input :currency
       f.input :price
       f.input :brand_id
-      f.input :user_id
     end
     f.actions
   end
@@ -21,7 +21,6 @@ ActiveAdmin.register Product do
     column :currency
     column :price
     column :brand_id
-    column :user_id
     actions
   end
 end

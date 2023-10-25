@@ -8,9 +8,10 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["products"]
+    ["products", "product_assignments"]
   end
 
-  has_many :products
+  has_many :product_assignments, dependent: :destroy
+  has_many :products, through: :product_assignments
   validates :name, presence: true, uniqueness: true
 end
