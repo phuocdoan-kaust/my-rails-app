@@ -29,6 +29,9 @@
             </li>
             <% if current_user && current_user.admin? %>
               <li class="nav-item">
+                <%= link_to "Card Requests", card_requests_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "Go to Admin Area", admin_root_path, class:"nav-link", target: :_blank %>
               </li>
             <% end %>
@@ -41,6 +44,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Manage Personal Cards", cards_path, class:"dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
               </ul>
