@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user'
+  get 'report', to: 'reports#index', as: 'reports'
   get 'brands/inactive', to: 'brands#inactive', as: 'inactive_brands'
   get 'products/inactive', to: 'products#inactive', as: 'inactive_products'
+  get 'cards/requests', to: 'cards#index_request_card', as: 'card_requests'
+  resources :cards do
+    member do
+      post :activate
+      post :suspend
+      post :reactivate
+    end
+  end
   resources :products do
     get :inactive
     member do

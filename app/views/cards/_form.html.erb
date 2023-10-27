@@ -1,0 +1,104 @@
+<%= form_with(model: card) do |form| %>
+  <% if card.errors.any? %>
+    <div class="row mb-3 bg-warning border border-1 p-2 rounded shadow-sm">
+      <% card.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# Cards Approval View%>
+  <% if card.state == 'pending' %>
+    <div class="mb-5">
+      <strong class="text-muted">General Information</strong>
+      <hr class="mt-0"/>
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <strong>Full Name</strong>
+        </div>
+        <div class="col">
+          <%= card.name %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <strong>CID</strong>
+        </div>
+        <div class="col">
+          <%= card.sid %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <strong>Date of Birth</strong>
+        </div>
+        <div class="col">
+          <%= card.dob %>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <strong class="text-muted">Card Activation</strong>
+      <hr class="mt-0"/>
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <%= form.label :pin, class: "col-form-label" %>
+        </div>
+        <div class="col-sm-10">
+          <%= form.text_field :pin, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <%= form.label :activation_code, class: "col-form-label" %>
+        </div>
+        <div class="col-sm-10">
+          <%= form.text_field :activation_code, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  <%# Cards Requests View%>
+  <% elsif card.state == 'draft' %>
+    <div class="row mb-3">
+      <div class="col-sm-2">
+        <%= form.label :name, "Full Name", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-2">
+        <%= form.label :dob, "Date of Birth", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-10">
+        <%= form.date_field :dob, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-2">
+        <%= form.label :sid, "Citizen Identity Card Number (CID)", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-10">
+        <%= form.text_field :sid, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="text-end">
+    <% if card.state == 'pending' %>
+      <%= form.submit "ACTIVATE", class: "btn btn-success" %>
+      <%= link_to "CANCEL", card_requests_path, class: "btn btn-danger" %>
+    <% else %>
+      <%= form.submit "REQUEST", class: "btn btn-success" %>
+      <% if card.new_record? %>
+        <%= link_to "CANCEL", cards_path, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "CANCEL", @card, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

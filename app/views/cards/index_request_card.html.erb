@@ -1,0 +1,31 @@
+<% if notice %> 
+  <div class="d-flex mb-3 bg-info border border-1 p-2 rounded shadow-sm">
+    <span class="align-middle"><%= notice %></span>
+  </div>
+<% end %>
+<p class="h1">Card Requests</p>
+<hr/>
+<div id="cards">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Requested By</th>
+        <th scope="col">Requested Time</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr class="align-middle">
+          <td scope="row"><%= card.user.name %></td>
+          <td scope="row"><%= card.requested_date %></td>
+          <td scope="row">
+            <%= link_to "APPROVE", edit_card_path(card), class: "btn btn-primary float-end" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @cards.length == 0 %>
+    <p class="text-center text-muted fst-italic">You have no active cards. Please request a new one by clicking the REQUEST NEW CARD button.</p>
+  <% end %>
+</div>

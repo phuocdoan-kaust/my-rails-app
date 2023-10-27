@@ -1,0 +1,42 @@
+<h1>Reports</h1>
+<hr/>
+<div class="border border-1 shadow-sm p-4 mb-3">
+  <div class="row mb-3">
+    <div class="col-sm-4">
+      <strong>Total time of Reactivation card</strong>
+    </div>
+    <div class="col-sm-8">
+      <%= @time_of_reactivate %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <strong>Total time of Cancelling card</strong>
+    </div>
+    <div class="col-sm-8">
+      <%= @time_of_cancelling %>
+    </div>
+  </div>
+</div>
+<div id="reports">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Type</th>
+        <th scope="col">Note</th>
+        <th scope="col">Time</th>
+    </thead>
+    <tbody>
+      <% @reports.each do |report| %>
+        <tr class="align-middle">
+          <td scope="row"><%= report.report_type %></td>
+          <td scope="row"><%= report.note %></td>
+          <td scope="row"><%= report.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @reports.length == 0 %>
+    <p class="text-center text-muted fst-italic">No history data found.</p>
+  <% end %>
+</div>
