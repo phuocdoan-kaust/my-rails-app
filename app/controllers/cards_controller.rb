@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_card, only: %i[ show edit update destroy activate ]
+  before_action :set_card, only: %i[ show edit update destroy activate suspend reactivate ]
 
   # GET /cards or /cards.json
   def index
@@ -83,6 +83,24 @@ class CardsController < ApplicationController
       @card.update(pin: params[:new_pin], state: 'active')
       redirect_to @card, notice: "Congratulations. Your card is activated!"
     end
+  end
+
+  def suspend
+    @card.update(state: "suspended")
+    current_user.reports.new(
+      report_type: 'Cancelling Card',
+      note: "Card number: #{@card.card_number}"
+    ).save
+    redirect_to @card, notice: "Your card is temporary cancelled!"
+  end
+
+  def reactivate
+    @card.update(state: "active")
+    current_user.reports.new(
+      report_type: 'Re-activating Card',
+      note: "Card number: #{@card.card_number}"
+    ).save
+    redirect_to @card, notice: "Your card is reactivated!"
   end
 
   private

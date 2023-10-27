@@ -13,5 +13,6 @@ class User < ApplicationRecord
 
   has_many :product_assignments, dependent: :destroy
   has_many :products, through: :product_assignments
+  has_many :reports
   validates :name, presence: true, uniqueness: true
 end

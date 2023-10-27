@@ -31,6 +31,8 @@
         <span class="badge bg-danger">Deactivated</span>
       <% elsif card.state == 'active' %>
         <span class="badge bg-success">Active</span>
+        <% elsif card.state == 'suspended' %>
+        <span class="badge bg-warning">Temporary Cancelled</span>
       <% end %>
     </div>
   </div>
